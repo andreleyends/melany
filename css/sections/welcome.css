@@ -1,0 +1,86 @@
+/* ==========================================================
+   Pantalla de bienvenida: elegir canción para entrar
+   ========================================================== */
+body.is-locked { overflow: hidden; }
+
+.welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px 18px;
+  overflow-y: auto;
+  background:
+    radial-gradient(90% 60% at 50% 0%, var(--bg2), transparent),
+    var(--bg);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.welcome[hidden] { display: none; }
+.welcome.is-leaving { opacity: 0; transform: scale(1.04); pointer-events: none; }
+
+.welcome__inner { width: min(100%, 420px); text-align: center; }
+
+.welcome__heart {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 10px;
+  fill: var(--acc);
+  animation: heartbeat 1.6s ease-in-out infinite;
+}
+
+.welcome__title {
+  font-family: var(--font-hand);
+  font-size: clamp(40px, 10vw, 54px);
+  line-height: 1.05;
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+.welcome__sub { color: var(--soft); margin: 0 0 26px; }
+
+.welcome__songs { display: grid; gap: 12px; }
+
+.welcome__song {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 76px;
+  padding: 9px 12px 9px 9px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--paper-ink);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s, box-shadow .2s;
+  animation: slide-up .6s ease both;
+  animation-delay: calc(var(--i) * 90ms + 200ms);
+}
+.welcome__song:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.welcome__song:focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; }
+.welcome__song img { width: 58px; height: 58px; border-radius: 10px; object-fit: cover; }
+.welcome__song-text b { display: block; font-size: 17px; line-height: 1.2; }
+.welcome__song-text small { color: #7a4352; font-size: 14px; }
+
+.welcome__play {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--acc);
+}
+.welcome__play svg { width: 18px; height: 18px; fill: #fff; margin-left: 2px; }
+
+.welcome__note { margin: 22px 0 0; font-size: 14px; color: var(--soft); }
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}

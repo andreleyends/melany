@@ -1,6 +1,6 @@
 # Nuestro álbum de recuerdos
 
-Página web hecha para Melany: línea del tiempo, galería, carta, contador de días juntos y una sorpresa al final.
+Página web hecha para Melany: bienvenida para elegir canción, reproductor flotante, línea del tiempo, galería, carta, contador de días juntos y una sorpresa al final.
 
 **Link:** https://andreleyends.github.io/melany/
 
@@ -11,7 +11,8 @@ melany/
 ├── index.html                 Estructura de la página (portada, secciones, carta, mensaje)
 ├── assets/
 │   ├── favicon.svg            Ícono de la pestaña
-│   └── img/                   Fotos optimizadas (NN.jpg)
+│   ├── img/                   Fotos optimizadas (NN.jpg)
+│   └── music/                 Canciones (MP3, 128 kbps)
 ├── css/
 │   ├── variables.css          Colores, fuentes y sombras
 │   ├── base.css               Reset y estilos generales
@@ -22,13 +23,18 @@ melany/
 │       ├── gallery.css        Galería y visor de fotos
 │       ├── letter.css         Sobre y carta
 │       ├── counter.css        Contador
+│       ├── welcome.css        Pantalla de bienvenida (elegir canción)
+│       ├── player.css         Reproductor flotante tipo isla
 │       └── surprise.css       Mensaje secreto y corazones
 └── js/
     ├── main.js                Punto de entrada: arma la página
     ├── config.js              Fecha de inicio y ruta de las fotos
     ├── data/
-    │   └── recuerdos.js       Momentos de la línea del tiempo y fotos de la galería
+    │   ├── recuerdos.js       Momentos de la línea del tiempo y fotos de la galería
+    │   └── canciones.js       Lista de canciones del reproductor
     └── modules/
+        ├── welcome.js         Bienvenida: elegir canción para entrar
+        ├── player.js          Reproductor flotante (isla)
         ├── timeline.js        Dibuja la línea del tiempo
         ├── gallery.js         Dibuja la galería
         ├── lightbox.js        Visor de fotos (teclado y swipe)
@@ -45,6 +51,7 @@ melany/
 | Un recuerdo o agregar uno nuevo     | `js/data/recuerdos.js`         |
 | Las fotos de la galería             | `js/data/recuerdos.js` (`GALLERY`) |
 | La carta o el mensaje secreto       | `index.html`                   |
+| Las canciones                       | `js/data/canciones.js` + MP3 en `assets/music/` |
 | La fecha del contador               | `js/config.js`                 |
 | Los colores                         | `css/variables.css`            |
 

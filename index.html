@@ -22,11 +22,52 @@
   <link rel="stylesheet" href="css/sections/letter.css">
   <link rel="stylesheet" href="css/sections/counter.css">
   <link rel="stylesheet" href="css/sections/surprise.css">
+  <link rel="stylesheet" href="css/sections/welcome.css">
+  <link rel="stylesheet" href="css/sections/player.css">
 
   <!-- Lógica (módulos ES) -->
   <script type="module" src="js/main.js"></script>
 </head>
 <body>
+
+  <!-- ===================== Bienvenida: elegir canción ===================== -->
+  <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="welcome__inner">
+      <svg class="welcome__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 8.3a4.2 4.2 0 0 1 7.5 2.5C19.5 16.4 12 21 12 21z"/></svg>
+      <h2 class="welcome__title" id="welcome-title">Hola, Melany</h2>
+      <p class="welcome__sub">Antes de abrir nuestro álbum, elige la canción que quieres que acompañe nuestros recuerdos.</p>
+      <div class="welcome__songs" id="welcome-songs"><!-- se llena desde js/data/canciones.js --></div>
+      <p class="welcome__note">Puedes cambiarla cuando quieras desde arriba.</p>
+    </div>
+  </div>
+
+  <!-- ===================== Reproductor flotante ===================== -->
+  <div class="island" id="island" hidden>
+    <div class="island__pill" role="button" tabindex="0" aria-label="Abrir reproductor">
+      <img class="island__mini-cover" alt="">
+      <span class="island__mini-title"></span>
+      <span class="island__eq" aria-hidden="true"><i></i><i></i><i></i></span>
+      <button class="island__mini-toggle" type="button" aria-label="Reproducir"></button>
+    </div>
+    <div class="island__panel">
+      <div class="island__head">
+        <span>Nuestra música</span>
+        <button class="island__close" type="button" aria-label="Cerrar reproductor"><svg viewBox="0 0 24 24"><path d="M6.7 14.7 12 9.4l5.3 5.3 1.4-1.4L12 6.6l-6.7 6.7z"/></svg></button>
+      </div>
+      <div class="island__now">
+        <img class="island__cover" alt="">
+        <div><p class="island__title"></p><p class="island__artist"></p></div>
+      </div>
+      <input class="island__seek" type="range" min="0" max="1000" value="0" aria-label="Progreso de la canción">
+      <div class="island__times"><span class="island__time-current">0:00</span><span class="island__time-total">0:00</span></div>
+      <div class="island__controls">
+        <button class="island__prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M7 6h2v12H7zM10.5 12 19 18V6z"/></svg></button>
+        <button class="island__toggle" type="button" aria-label="Reproducir"></button>
+        <button class="island__next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M15 6h2v12h-2zM13.5 12 5 6v12z"/></svg></button>
+      </div>
+      <ul class="island__list"></ul>
+    </div>
+  </div>
 
   <!-- ===================== Portada ===================== -->
   <header class="hero">
