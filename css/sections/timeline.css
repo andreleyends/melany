@@ -1,0 +1,88 @@
+/* ==========================================================
+   Línea del tiempo
+   ========================================================== */
+.timeline { position: relative; max-width: 900px; margin: 0 auto; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 18px; top: 0; bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(var(--line) 0 8px, transparent 8px 16px);
+}
+
+.moment { position: relative; padding-left: 52px; margin-bottom: 56px; }
+.moment::before {
+  content: "";
+  position: absolute;
+  left: 10px; top: 6px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--acc);
+}
+
+.moment__date  { font-family: var(--font-hand); font-size: 24px; color: var(--acc); line-height: 1; }
+.moment__title { font-family: var(--font-hand); font-size: 34px; line-height: 1.1; margin: 2px 0 6px; }
+.moment__text  { margin: 0 0 18px; max-width: 32em; }
+
+.moment__photos { display: flex; flex-wrap: wrap; gap: 18px; }
+.moment__photos .polaroid {
+  width: min(44%, 210px);
+  cursor: zoom-in;
+  transition: transform .3s;
+}
+.moment__photos .polaroid img { aspect-ratio: 4 / 5; }
+.moment__photos .polaroid:nth-child(odd)  { transform: rotate(-3deg); }
+.moment__photos .polaroid:nth-child(even) { transform: rotate(2.5deg); }
+.moment__photos .polaroid:hover { transform: rotate(0) scale(1.04); z-index: 3; }
+.moment__photos .polaroid:focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; }
+
+/* Momento destacado (el día que se hicieron novios) */
+.moment--featured::before {
+  width: 26px; height: 26px;
+  left: 6px; top: 2px;
+  background: var(--acc);
+  border-color: var(--acc);
+}
+.moment--featured .moment__card {
+  background: var(--bg2);
+  border-radius: 18px;
+  padding: 22px 20px 26px;
+  margin-left: -8px;
+}
+.moment--featured .moment__title { font-size: 42px; color: var(--acc); }
+
+.timeline__divider {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--soft);
+  padding-left: 52px;
+  margin: -20px 0 40px;
+}
+
+/* Pantallas anchas: los momentos alternan de lado */
+@media (min-width: 760px) {
+  .timeline::before { left: 50%; margin-left: -1px; }
+
+  .moment { width: 50%; padding: 0 46px 0 0; text-align: right; }
+  .moment::before { left: auto; right: -9px; }
+  .moment .moment__photos { justify-content: flex-end; }
+  .moment .moment__text { margin-left: auto; }
+
+  .moment:nth-of-type(even) { margin-left: 50%; padding: 0 0 0 46px; text-align: left; }
+  .moment:nth-of-type(even)::before { right: auto; left: -9px; }
+  .moment:nth-of-type(even) .moment__photos { justify-content: flex-start; }
+  .moment:nth-of-type(even) .moment__text { margin-left: 0; }
+
+  .moment--featured,
+  .moment--featured:nth-of-type(even) { width: 100%; margin-left: 0; padding: 0; text-align: center; }
+  .moment--featured::before,
+  .moment--featured:nth-of-type(even)::before { left: 50%; right: auto; margin-left: -13px; top: -34px; }
+  .moment--featured .moment__card { margin: 0 auto; max-width: 760px; }
+  .moment--featured .moment__photos,
+  .moment--featured:nth-of-type(even) .moment__photos { justify-content: center; }
+  .moment--featured .moment__text,
+  .moment--featured:nth-of-type(even) .moment__text { margin: 0 auto 18px; }
+
+  .timeline__divider { text-align: center; padding: 0; }
+}

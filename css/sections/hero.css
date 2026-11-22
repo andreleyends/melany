@@ -1,0 +1,39 @@
+/* ==========================================================
+   Portada
+   ========================================================== */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 48px 18px 72px;
+  background: radial-gradient(120% 70% at 50% 0%, var(--bg2), var(--bg));
+}
+
+.hero__stack {
+  position: relative;
+  width: min(92vw, 520px);
+  height: min(92vw, 440px);
+  margin: 0 auto 28px;
+}
+.hero__stack .polaroid { position: absolute; width: 56%; }
+.hero__stack .polaroid:nth-child(1) { left: 0;   top: 12%; transform: rotate(-9deg); }
+.hero__stack .polaroid:nth-child(2) { right: 0;  top: 4%;  transform: rotate(7deg); }
+.hero__stack .polaroid:nth-child(3) { left: 22%; top: 30%; transform: rotate(-1deg); z-index: 2; }
+
+.hero__title {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: clamp(46px, 11vw, 84px);
+  line-height: 1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.hero__for { font-size: 19px; color: var(--soft); margin: 12px 0 26px; }
+.hero__name {
+  color: var(--acc);
+  font-family: var(--font-hand);
+  font-size: 32px;
+  font-weight: 700;
+}

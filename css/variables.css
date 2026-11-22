@@ -1,0 +1,31 @@
+/* ==========================================================
+   Variables: colores, fuentes y sombras de todo el sitio.
+   Cambia aquí la paleta y se actualiza en todas partes.
+   ========================================================== */
+:root {
+  color-scheme: light dark;
+
+  /* Colores (claro, oscuro) */
+  --bg:        light-dark(#f7e4e2, #1d0a11);
+  --bg2:       light-dark(#efd2cf, #2a1019);
+  --ink:       light-dark(#3b0f1d, #f7dfe2);
+  --soft:      light-dark(#7a4352, #d8a9b4);
+  --acc:       light-dark(#d93a58, #ff6b84);
+  --acc-dark:  light-dark(#c42f4c, #e85571);
+  --paper:     light-dark(#fffaf8, #f6ece9);
+  --paper-ink: #3b0f1d;
+  --tape:      light-dark(rgba(255, 214, 140, .75), rgba(255, 214, 140, .55));
+  --line:      light-dark(#e2b5b6, #5a2333);
+
+  /* Tipografía */
+  --font-hand: "Caveat", cursive;
+  --font-body: "Nunito", system-ui, sans-serif;
+
+  /* Sombras */
+  --shadow-sm: 0 6px 16px rgba(60, 10, 25, .15);
+  --shadow-md: 0 14px 30px rgba(60, 10, 25, .22), 0 2px 4px rgba(60, 10, 25, .15);
+  --shadow-lg: 0 18px 40px rgba(60, 10, 25, .2);
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }

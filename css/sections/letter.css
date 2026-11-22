@@ -1,0 +1,68 @@
+/* ==========================================================
+   Sobre y carta
+   ========================================================== */
+.envelope {
+  position: relative;
+  display: block;
+  width: min(92vw, 460px);
+  aspect-ratio: 1.55;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.envelope[hidden] { display: none; }
+.envelope__body {
+  position: absolute;
+  inset: 0;
+  background: var(--acc);
+  border-radius: 10px;
+  box-shadow: 0 16px 36px rgba(120, 20, 45, .3);
+}
+.envelope__flap {
+  position: absolute;
+  inset: 0 0 40% 0;
+  z-index: 2;
+  background: var(--acc-dark);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-radius: 10px 10px 0 0;
+  transform-origin: top;
+  transition: transform .6s;
+}
+.envelope__seal {
+  position: absolute;
+  left: 50%; top: 52%;
+  width: 56px; height: 56px;
+  margin: -28px;
+  z-index: 3;
+  transition: opacity .3s;
+}
+.envelope__hint {
+  position: absolute;
+  inset: auto 0 14px;
+  z-index: 3;
+  color: #fff;
+  font: 700 15px var(--font-body);
+  text-align: center;
+}
+.envelope.is-open .envelope__flap { transform: rotateX(180deg); }
+.envelope.is-open .envelope__seal,
+.envelope.is-open .envelope__hint { opacity: 0; }
+
+.letter {
+  display: none;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: clamp(26px, 5vw, 48px);
+  border-radius: 6px;
+  background: var(--paper) repeating-linear-gradient(transparent 0 33px, #f0d3d3 33px 34px);
+  color: var(--paper-ink);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-hand);
+  font-size: 25px;
+  line-height: 34px;
+}
+.letter.is-open { display: block; animation: slide-up .7s ease both; }
+.letter p { margin: 0 0 34px; }
+.letter__sign { text-align: right; margin: 0 !important; }

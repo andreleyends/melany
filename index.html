@@ -1,287 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nuestro álbum de recuerdos</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-/* VOICE: tierno, íntimo, cálido; pocas palabras y mucho aire
-   IDEA: un álbum de fotos físico: polaroids pegadas con cinta y notas escritas a mano
-   PICTURE: tres polaroids inclinadas en la portada; la línea del tiempo como páginas del álbum
-   COLOUR and TYPE: fondo rosa empolvado, tinta vino, acento coral; Caveat para lo manuscrito, Nunito para el texto
-   LAYOUT: una columna centrada para celular, la línea del tiempo alterna lados en pantallas anchas */
-:root{color-scheme:light dark;
-  --bg:light-dark(#f7e4e2,#1d0a11);--bg2:light-dark(#efd2cf,#2a1019);
-  --ink:light-dark(#3b0f1d,#f7dfe2);--soft:light-dark(#7a4352,#d8a9b4);
-  --acc:light-dark(#d93a58,#ff6b84);--paper:light-dark(#fffaf8,#f6ece9);--paperInk:#3b0f1d;
-  --tape:light-dark(rgba(255,214,140,.75),rgba(255,214,140,.55));--line:light-dark(#e2b5b6,#5a2333)}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
-*{box-sizing:border-box;min-width:0}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Nunito,system-ui,sans-serif;overflow-x:clip}
-img{display:block;max-width:100%}
-.hand{font-family:Caveat,cursive}
-.band{padding:clamp(40px,7vw,96px) max(5vw,18px)}
-.wrap{max-width:1000px;margin:0 auto}
-h2{font-family:Caveat,cursive;font-size:clamp(40px,8vw,58px);line-height:1.05;margin:0 0 8px;text-align:center;text-wrap:balance}
-.sub{text-align:center;color:var(--soft);margin:0 auto 40px;max-width:34em}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuestro álbum de recuerdos</title>
+  <meta name="description" content="Un álbum de recuerdos para Melany">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-/* Portada */
-.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:48px 18px 72px;
-  background:radial-gradient(120% 70% at 50% 0%,var(--bg2),var(--bg))}
-.stack{position:relative;width:min(92vw,520px);height:min(92vw,440px);margin:0 auto 28px}
-.pol{background:var(--paper);padding:10px 10px 38px;border-radius:3px;box-shadow:0 14px 30px rgba(60,10,25,.22),0 2px 4px rgba(60,10,25,.15);position:relative}
-.pol img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;background:#ddd}
-.pol .cap{position:absolute;left:0;right:0;bottom:6px;font-family:Caveat,cursive;font-size:22px;color:var(--paperInk);text-align:center}
-.pol::before{content:"";position:absolute;top:-12px;left:50%;width:84px;height:26px;margin-left:-42px;background:var(--tape);transform:rotate(-3deg);box-shadow:0 1px 2px rgba(0,0,0,.08)}
-.stack .pol{position:absolute;width:56%}
-.stack .p1{left:0;top:12%;transform:rotate(-9deg)}
-.stack .p2{right:0;top:4%;transform:rotate(7deg)}
-.stack .p3{left:22%;top:30%;transform:rotate(-1deg);z-index:2}
-.hero h1{font-family:Caveat,cursive;font-weight:700;font-size:clamp(46px,11vw,84px);line-height:1;margin:0;text-wrap:balance}
-.hero .for{font-size:19px;color:var(--soft);margin:12px 0 26px}
-.hero .for b{color:var(--acc);font-family:Caveat,cursive;font-size:32px;font-weight:700}
-.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 24px;border-radius:99px;border:0;background:var(--acc);color:#fff;font:800 16px Nunito,sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 8px 20px rgba(217,58,88,.3)}
-.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;800&display=swap">
 
-/* Línea del tiempo */
-.tl{position:relative;max-width:900px;margin:0 auto}
-.tl::before{content:"";position:absolute;left:18px;top:0;bottom:0;width:2px;background:repeating-linear-gradient(var(--line) 0 8px,transparent 8px 16px)}
-.ev{position:relative;padding-left:52px;margin-bottom:56px}
-.ev::before{content:"";position:absolute;left:10px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--acc)}
-.date{font-family:Caveat,cursive;font-size:24px;color:var(--acc);line-height:1}
-.ev h3{font-family:Caveat,cursive;font-size:34px;line-height:1.1;margin:2px 0 6px}
-.ev p{margin:0 0 18px;max-width:32em}
-.pics{display:flex;flex-wrap:wrap;gap:18px}
-.pics .pol{width:min(44%,210px);cursor:zoom-in;transition:transform .3s;border:0;font:inherit;display:block}
-.pics .pol:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
-.pics .pol:nth-child(odd){transform:rotate(-3deg)}.pics .pol:nth-child(even){transform:rotate(2.5deg)}
-.pics .pol:hover{transform:rotate(0) scale(1.04);z-index:3}
-.pics .pol img{aspect-ratio:4/5}
-.ev.big::before{width:26px;height:26px;left:6px;top:2px;background:var(--acc);border-color:var(--acc)}
-.ev.big .card{background:var(--bg2);border-radius:18px;padding:22px 20px 26px;margin-left:-8px}
-.ev.big h3{font-size:42px;color:var(--acc)}
-.divider{font-family:Caveat,cursive;font-size:26px;color:var(--soft);padding-left:52px;margin:-20px 0 40px}
-@media(min-width:760px){
-  .tl::before{left:50%;margin-left:-1px}
-  .ev{width:50%;padding:0 46px 0 0;text-align:right}
-  .ev::before{left:auto;right:-9px}
-  .ev .pics{justify-content:flex-end}.ev p{margin-left:auto}
-  .ev:nth-of-type(even){margin-left:50%;padding:0 0 0 46px;text-align:left}
-  .ev:nth-of-type(even)::before{right:auto;left:-9px}
-  .ev:nth-of-type(even) .pics{justify-content:flex-start}.ev:nth-of-type(even) p{margin-left:0}
-  .ev.big{width:100%;margin-left:0!important;padding:0!important;text-align:center}
-  .ev.big::before{left:50%!important;margin-left:-13px;top:-34px}
-  .ev.big .card{margin:0 auto;max-width:760px}.ev.big .pics{justify-content:center}.ev.big p{margin:0 auto 18px}
-  .divider{text-align:center;padding:0}
-}
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections/hero.css">
+  <link rel="stylesheet" href="css/sections/timeline.css">
+  <link rel="stylesheet" href="css/sections/gallery.css">
+  <link rel="stylesheet" href="css/sections/letter.css">
+  <link rel="stylesheet" href="css/sections/counter.css">
+  <link rel="stylesheet" href="css/sections/surprise.css">
 
-/* Galería */
-.gal{columns:3 220px;column-gap:14px;max-width:1100px;margin:0 auto}
-.gal button{all:unset;display:block;margin:0 0 14px;break-inside:avoid;border-radius:10px;overflow:hidden;cursor:zoom-in;box-shadow:0 6px 16px rgba(60,10,25,.15)}
-.gal button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-.gal img{width:100%;transition:transform .4s}.gal button:hover img{transform:scale(1.05)}
-@media(max-width:600px){.gal{columns:2;column-gap:10px}.gal button{margin-bottom:10px}}
-.lb{position:fixed;inset:0;background:rgba(20,4,10,.94);display:none;place-items:center;z-index:50;touch-action:pan-y}
-.lb.on{display:grid}
-.lb img{max-width:94vw;max-height:84svh;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.lb .x,.lb .nv{position:absolute;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:26px;cursor:pointer}
-.lb .x{top:14px;right:14px}.lb .pv{left:10px;top:50%;margin-top:-24px}.lb .nx{right:10px;top:50%;margin-top:-24px}
-.lb .ct{position:absolute;bottom:16px;color:#f2cdd5;font-size:14px}
-
-/* Carta */
-.env{width:min(92vw,460px);margin:0 auto;cursor:pointer;position:relative;aspect-ratio:1.55;border:0;padding:0;background:none;display:block}
-.env .body{position:absolute;inset:0;background:var(--acc);border-radius:10px;box-shadow:0 16px 36px rgba(120,20,45,.3)}
-.env .flap{position:absolute;inset:0 0 40% 0;background:light-dark(#c42f4c,#e85571);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .6s;border-radius:10px 10px 0 0;z-index:2}
-.env .seal{position:absolute;left:50%;top:52%;width:56px;height:56px;margin:-28px;z-index:3;transition:opacity .3s}
-.env .hint{position:absolute;bottom:14px;left:0;right:0;color:#fff;font:700 15px Nunito,sans-serif;text-align:center;z-index:3}
-.env.open .flap{transform:rotateX(180deg)}.env.open .seal,.env.open .hint{opacity:0}
-.letter{max-width:620px;margin:0 auto;background:var(--paper);color:var(--paperInk);border-radius:6px;padding:clamp(26px,5vw,48px);box-shadow:0 18px 40px rgba(60,10,25,.2);
-  background-image:repeating-linear-gradient(transparent 0 33px,#f0d3d3 33px 34px);display:none;font-family:Caveat,cursive;font-size:25px;line-height:34px}
-.letter.on{display:block;animation:up .7s ease both}
-.letter p{margin:0 0 34px}.letter .sign{text-align:right;margin:0}
-@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-
-/* Contador */
-.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:640px;margin:0 auto}
-.count div{background:var(--paper);color:var(--paperInk);border-radius:16px;padding:18px 6px;text-align:center;box-shadow:0 8px 20px rgba(60,10,25,.12)}
-.count b{display:block;font-size:clamp(30px,8vw,52px);line-height:1;font-weight:800;color:var(--acc);font-variant-numeric:tabular-nums}
-.count span{font-size:14px;color:#7a4352}
-.since{text-align:center;margin-top:18px;color:var(--soft)}
-
-/* Sorpresa */
-.final{text-align:center;padding-bottom:120px}
-.secret{max-width:560px;margin:30px auto 0;background:var(--paper);color:var(--paperInk);border-radius:20px;padding:30px 26px;box-shadow:0 18px 40px rgba(60,10,25,.2);display:none}
-.secret.on{display:block;animation:up .8s ease both}
-.secret h3{font-family:Caveat,cursive;font-size:40px;line-height:1.05;margin:0 0 12px;color:#d93a58}
-.secret p{margin:0 0 14px}
-.heart{position:fixed;top:-40px;pointer-events:none;z-index:60;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(var(--r))}}
-footer{text-align:center;color:var(--soft);font-family:Caveat,cursive;font-size:24px;padding:0 18px 40px}
-
-.rv{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
-</style>
+  <!-- Lógica (módulos ES) -->
+  <script type="module" src="js/main.js"></script>
 </head>
 <body>
 
-<header class="hero">
-  <div>
-    <div class="stack" aria-hidden="true">
-      <div class="pol p1"><img src="img/51.jpg" alt=""><span class="cap">la ciudad y tú</span></div>
-      <div class="pol p2"><img src="img/44.jpg" alt=""><span class="cap">20 · 09</span></div>
-      <div class="pol p3"><img src="img/18.jpg" alt=""><span class="cap">nosotros</span></div>
+  <!-- ===================== Portada ===================== -->
+  <header class="hero">
+    <div>
+      <div class="hero__stack" aria-hidden="true">
+        <div class="polaroid"><img src="assets/img/51.jpg" alt=""><span class="polaroid__caption">la ciudad y tú</span></div>
+        <div class="polaroid"><img src="assets/img/44.jpg" alt=""><span class="polaroid__caption">20 · 09</span></div>
+        <div class="polaroid"><img src="assets/img/18.jpg" alt=""><span class="polaroid__caption">nosotros</span></div>
+      </div>
+      <h1 class="hero__title">Nuestro álbum de recuerdos</h1>
+      <p class="hero__for">Hecho con todo mi cariño para <span class="hero__name">Melany</span></p>
+      <a class="btn" href="#historia">
+        Abrir el álbum
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
     </div>
-    <h1>Nuestro álbum de recuerdos</h1>
-    <p class="for">Hecho con todo mi cariño para <b>Melany</b></p>
-    <a class="btn" href="#historia">Abrir el álbum
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+  </header>
+
+  <main>
+    <!-- ===================== Línea del tiempo ===================== -->
+    <section class="band" id="historia">
+      <h2 class="section-title reveal">Nuestra historia</h2>
+      <p class="section-sub reveal">Cada foto es una página. Toca cualquiera para verla en grande.</p>
+      <div class="timeline" id="timeline"><!-- se llena desde js/data/recuerdos.js --></div>
+    </section>
+
+    <!-- ===================== Galería ===================== -->
+    <section class="band band--alt" id="galeria">
+      <h2 class="section-title reveal">Todas nuestras fotos</h2>
+      <p class="section-sub reveal">Para cuando quieras volver a vivir cada momento.</p>
+      <div class="gallery" id="gallery"><!-- se llena desde js/data/recuerdos.js --></div>
+    </section>
+
+    <!-- ===================== Carta ===================== -->
+    <section class="band" id="carta">
+      <h2 class="section-title reveal">Una cartita para ti</h2>
+      <p class="section-sub reveal">Ábrela despacito.</p>
+
+      <button class="envelope reveal" id="envelope" type="button" aria-label="Abrir la carta">
+        <span class="envelope__body"></span>
+        <span class="envelope__flap"></span>
+        <svg class="envelope__seal" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#fff4f2"/><path d="M12 18s-5.5-3.4-5.5-7.2A3 3 0 0 1 12 9a3 3 0 0 1 5.5 1.8C17.5 14.6 12 18 12 18z" fill="#d93a58"/></svg>
+        <span class="envelope__hint">Toca para abrir</span>
+      </button>
+
+      <div class="letter" id="letter">
+        <p>Para Melany:</p>
+        <p>No sé muy bien cómo empezar esto, pero sí sé por qué lo escribo: desde que llegaste a mi vida todo tiene más color. Me encanta tu risa, cómo me miras cuando crees que no me doy cuenta, cómo te acurrucas en mi hombro cuando hace frío y cómo haces que hasta un día normal se convierta en un recuerdo bonito.</p>
+        <p>Gracias por cada abrazo, por cada paseo, por subir montañas conmigo y, sobre todo, por elegirme aquel 20 de septiembre. Ese día empecé a escribir la parte más linda de mi historia, y la estoy escribiendo contigo.</p>
+        <p>Sé que no soy perfecto y que a veces me equivoco, pero quiero que sepas que cada día intento ser mejor para ti, porque te lo mereces todo. Este álbum apenas tiene unas cuantas páginas, y yo quiero llenarlo contigo de muchísimas más.</p>
+        <p>Te quiero con todo mi corazón.</p>
+        <p class="letter__sign">Siempre tuyo,<br>Andre</p>
+      </div>
+    </section>
+
+    <!-- ===================== Contador ===================== -->
+    <section class="band band--alt" id="contador">
+      <h2 class="section-title reveal">Juntos desde hace…</h2>
+      <p class="section-sub reveal">Y el contador no va a parar.</p>
+      <div class="counter reveal">
+        <div class="counter__unit"><b class="counter__value" id="count-days">0</b><span class="counter__label">días</span></div>
+        <div class="counter__unit"><b class="counter__value" id="count-hours">00</b><span class="counter__label">horas</span></div>
+        <div class="counter__unit"><b class="counter__value" id="count-minutes">00</b><span class="counter__label">minutos</span></div>
+        <div class="counter__unit"><b class="counter__value" id="count-seconds">00</b><span class="counter__label">segundos</span></div>
+      </div>
+      <p class="counter__since reveal" id="count-since">desde el 20 de septiembre de 2026</p>
+    </section>
+
+    <!-- ===================== Sorpresa ===================== -->
+    <section class="band surprise" id="sorpresa">
+      <h2 class="section-title reveal">Una última cosita…</h2>
+      <p class="section-sub reveal">Hay algo que quiero decirte. Solo tienes que tocar el botón.</p>
+      <button class="btn reveal" id="reveal-btn" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 8.3a4.2 4.2 0 0 1 7.5 2.5C19.5 16.4 12 21 12 21z"/></svg>
+        Tócame
+      </button>
+      <div class="secret" id="secret">
+        <h3 class="secret__title">Perdóname por lo de hoy, mi amor</h3>
+        <p>No me gusta cuando estamos mal, y menos saber que yo te hice sentir así. Eres de lo más bonito que tengo y no quiero que un mal momento opaque todo lo lindo que hemos construido.</p>
+        <p>Prometo escucharte más, cuidarte mejor y no dejar que el orgullo gane nunca entre nosotros.</p>
+        <p><b>¿Me das un abrazo y seguimos llenando este álbum juntos?</b></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">con amor, para Melany</footer>
+
+  <!-- ===================== Visor de fotos ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button class="lightbox__btn lightbox__btn--close" id="lightbox-close" type="button" aria-label="Cerrar">&times;</button>
+    <button class="lightbox__btn lightbox__btn--prev" id="lightbox-prev" type="button" aria-label="Anterior">&#8249;</button>
+    <img class="lightbox__img" id="lightbox-img" alt="">
+    <button class="lightbox__btn lightbox__btn--next" id="lightbox-next" type="button" aria-label="Siguiente">&#8250;</button>
+    <span class="lightbox__counter" id="lightbox-counter"></span>
   </div>
-</header>
 
-<section class="band" id="historia">
-  <h2 class="rv">Nuestra historia</h2>
-  <p class="sub rv">Cada foto es una página. Toca cualquiera para verla en grande.</p>
-  <div class="tl" id="tl"></div>
-</section>
-
-<section class="band" style="background:var(--bg2)">
-  <h2 class="rv">Todas nuestras fotos</h2>
-  <p class="sub rv">Para cuando quieras volver a vivir cada momento.</p>
-  <div class="gal" id="gal"></div>
-</section>
-
-<section class="band">
-  <h2 class="rv">Una cartita para ti</h2>
-  <p class="sub rv">Ábrela despacito.</p>
-  <button class="env rv" id="env" aria-label="Abrir la carta">
-    <span class="body"></span><span class="flap"></span>
-    <svg class="seal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#fff4f2"/><path d="M12 18s-5.5-3.4-5.5-7.2A3 3 0 0 1 12 9a3 3 0 0 1 5.5 1.8C17.5 14.6 12 18 12 18z" fill="#d93a58"/></svg>
-    <span class="hint">Toca para abrir</span>
-  </button>
-  <div class="letter" id="letter">
-    <p>Para Melany:</p>
-    <p>No sé muy bien cómo empezar esto, pero sí sé por qué lo escribo: desde que llegaste a mi vida todo tiene más color. Me encanta tu risa, cómo me miras cuando crees que no me doy cuenta, cómo te acurrucas en mi hombro cuando hace frío y cómo haces que hasta un día normal se convierta en un recuerdo bonito.</p>
-    <p>Gracias por cada abrazo, por cada paseo, por subir montañas conmigo y, sobre todo, por elegirme aquel 20 de septiembre. Ese día empecé a escribir la parte más linda de mi historia, y la estoy escribiendo contigo.</p>
-    <p>Sé que no soy perfecto y que a veces me equivoco, pero quiero que sepas que cada día intento ser mejor para ti, porque te lo mereces todo. Este álbum apenas tiene unas cuantas páginas, y yo quiero llenarlo contigo de muchísimas más.</p>
-    <p>Te quiero con todo mi corazón.</p>
-    <p class="sign">Siempre tuyo,<br>Andre</p>
-  </div>
-</section>
-
-<section class="band" style="background:var(--bg2)">
-  <h2 class="rv">Juntos desde hace…</h2>
-  <p class="sub rv">Y el contador no va a parar.</p>
-  <div class="count rv" aria-live="off">
-    <div><b id="cd">0</b><span>días</span></div>
-    <div><b id="ch">0</b><span>horas</span></div>
-    <div><b id="cm">0</b><span>minutos</span></div>
-    <div><b id="cs">0</b><span>segundos</span></div>
-  </div>
-  <p class="since rv" id="since">desde el 20 de septiembre de 2026</p>
-</section>
-
-<section class="band final">
-  <h2 class="rv">Una última cosita…</h2>
-  <p class="sub rv">Hay algo que quiero decirte. Solo tienes que tocar el botón.</p>
-  <button class="btn rv" id="reveal">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 8.3a4.2 4.2 0 0 1 7.5 2.5C19.5 16.4 12 21 12 21z"/></svg>
-    Tócame</button>
-  <div class="secret" id="secret">
-    <h3>Perdóname por lo de hoy, mi amor</h3>
-    <p>No me gusta cuando estamos mal, y menos saber que yo te hice sentir así. Eres de lo más bonito que tengo y no quiero que un mal momento opaque todo lo lindo que hemos construido.</p>
-    <p>Prometo escucharte más, cuidarte mejor y no dejar que el orgullo gane nunca entre nosotros.</p>
-    <p><b>¿Me das un abrazo y seguimos llenando este álbum juntos?</b></p>
-  </div>
-</section>
-
-<footer>con amor, para Melany</footer>
-
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
-  <button class="x" id="lbx" aria-label="Cerrar">&times;</button>
-  <button class="nv pv" id="lbp" aria-label="Anterior">&#8249;</button>
-  <img id="lbi" alt="">
-  <button class="nv nx" id="lbn" aria-label="Siguiente">&#8250;</button>
-  <span class="ct" id="lbc"></span>
-</div>
-
-<script>
-{
-const EV=[
- {d:"8 de agosto",t:"La noche de las risas",p:"Entre música, brindis y frío, apoyaste tu cabeza en mi hombro y algo dentro de mí supo que esto iba en serio.",i:["00","01","03"]},
- {d:"26 de agosto",t:"Entre rosas y amigos",p:"Selfies torpes, rosas de fondo y yo sin poder dejar de mirarte.",i:["04","06"]},
- {d:"29 de agosto",t:"Noches que no quería que terminen",p:"De esas noches en las que el tiempo pasa volando y uno solo quiere cinco minutitos más.",i:["07"]},
- {d:"8 de septiembre",t:"Brillitos en la cara",p:"Me llenaste de brillos y yo me dejé, porque contigo hasta lo más loco se siente bonito.",i:["08","10"]},
- {d:"12 de septiembre",t:"Nuestra tarde de cine",p:"Pasamos toda la tarde en el cine. En plena salida me llamó mi mamá porque no tenía permiso para salir… pero igual me escapé, porque valía la pena cada minuto a tu lado.",i:["11","12"]},
- {d:"16 de septiembre",t:"Caminando de noche",p:"Calles iluminadas, tu mano en la mía y la sensación de que algo grande estaba por pasar.",i:["14","15"]},
- {big:1,d:"20 de septiembre de 2026",t:"El día que empezó lo nuestro",p:"Te quedaste dormida en el camino, subimos entre montañas y piedras antiguas, con el sol encima y el corazón a mil. Ese día dejamos de ser tú y yo para ser nosotros.",i:["16","18","20","44","28","45"]},
- {d:"22 de septiembre",t:"Llegó Molly",p:"Dos días después de ser novios, la familia creció: se incorporó Molly, nuestra gatita. Chiquita, curiosa y la más consentida de los tres.",i:["47","48"]},
- {d:"10 de octubre",t:"La ciudad a nuestros pies",p:"Las luces de la ciudad allá abajo y tú en mis brazos. No necesitaba nada más.",i:["51","52","50"]},
- {d:"31 de octubre",t:"Halloween juntos",p:"Pintados, disfrazados y riéndonos de todo. Hasta disfrazada eres la más linda.",i:["54"]},
- {d:"8 de noviembre",t:"Café entre estrellas",p:"Un café rodeados de cielos pintados, aunque la obra de arte más bonita estaba sentada frente a mí.",i:["55","58"]},
- {d:"15 de noviembre",t:"Y seguimos sumando",p:"Cada día contigo es una página nueva para este álbum.",i:["59"]}
-];
-const GAL=["00","01","03","04","06","07","08","10","11","12","14","15","16","17","18","19","20","22","24","25","27","28","29","32","33","34","35","39","40","44","45","47","48","49","50","51","52","54","55","56","58","59"];
-const src=n=>`img/${n}.jpg`;
-const tl=document.getElementById('tl');
-tl.innerHTML=EV.map((e,k)=>(k===6?'<div class="divider rv">y entonces llegó el día…</div>':'')+`
- <article class="ev rv${e.big?' big':''}"><div class="card">
-  <div class="date">${e.d}</div><h3>${e.t}</h3><p>${e.p}</p>
-  <div class="pics">${e.i.map(n=>`<button class="pol" data-n="${n}" style="all:unset" aria-label="Ver foto"><div class="pol"><img loading="lazy" src="${src(n)}" alt=""></div></button>`).join('')}</div>
- </div></article>`).join('');
-// simplify nested pol: use button itself as polaroid
-tl.querySelectorAll('button[data-n]').forEach(b=>{b.removeAttribute('style');b.innerHTML=b.querySelector('.pol').innerHTML});
-document.getElementById('gal').innerHTML=GAL.map(n=>`<button data-n="${n}" aria-label="Ver foto"><img loading="lazy" src="${src(n)}" alt=""></button>`).join('');
-
-// Lightbox
-const lb=document.getElementById('lb'),lbi=document.getElementById('lbi'),lbc=document.getElementById('lbc');
-let idx=0;
-const show=i=>{idx=(i+GAL.length)%GAL.length;lbi.src=src(GAL[idx]);lbc.textContent=`${idx+1} / ${GAL.length}`};
-const open=n=>{show(Math.max(0,GAL.indexOf(n)));lb.classList.add('on');document.body.style.overflow='hidden'};
-const close=()=>{lb.classList.remove('on');document.body.style.overflow=''};
-document.addEventListener('click',e=>{const b=e.target.closest('button[data-n]');if(b)open(b.dataset.n)});
-document.getElementById('lbx').onclick=close;
-document.getElementById('lbp').onclick=()=>show(idx-1);
-document.getElementById('lbn').onclick=()=>show(idx+1);
-lb.addEventListener('click',e=>{if(e.target===lb)close()});
-document.addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(idx-1);if(e.key==='ArrowRight')show(idx+1)});
-let sx=null;
-lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-lb.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)show(idx+(dx<0?1:-1));sx=null});
-
-// Carta
-const env=document.getElementById('env'),letter=document.getElementById('letter');
-env.addEventListener('click',()=>{env.classList.add('open');setTimeout(()=>{env.style.display='none';letter.classList.add('on');letter.scrollIntoView({behavior:'smooth',block:'start'})},650)});
-
-// Contador
-const start=new Date('2026-09-20T00:00:00-05:00');
-const pad=v=>String(v).padStart(2,'0');
-const tick=()=>{let s=Math.max(0,Math.floor((Date.now()-start)/1000));
- const d=Math.floor(s/86400);s%=86400;
- document.getElementById('cd').textContent=d;
- document.getElementById('ch').textContent=pad(Math.floor(s/3600));
- document.getElementById('cm').textContent=pad(Math.floor(s%3600/60));
- document.getElementById('cs').textContent=pad(s%60);
- const now=new Date();let m=(now.getFullYear()-2026)*12+now.getMonth()-8;if(now.getDate()<20)m--;
- if(m>0)document.getElementById('since').textContent=`desde el 20 de septiembre de 2026 · ${m} ${m===1?'mes':'meses'} contigo`;};
-tick();setInterval(tick,1000);
-
-// Sorpresa
-const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const rain=()=>{if(rm)return;for(let k=0;k<40;k++){const h=document.createElement('div');h.className='heart';
- const sz=14+Math.random()*22;h.style.left=Math.random()*100+'vw';h.style.setProperty('--r',(Math.random()*360-180)+'deg');
- h.style.animationDuration=(3+Math.random()*3)+'s';h.style.animationDelay=Math.random()*1.5+'s';
- h.innerHTML=`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="hsl(${340+Math.random()*25},80%,${55+Math.random()*15}%)"><path d="M12 21s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 8.3a4.2 4.2 0 0 1 7.5 2.5C19.5 16.4 12 21 12 21z"/></svg>`;
- document.body.appendChild(h);setTimeout(()=>h.remove(),8000)}};
-document.getElementById('reveal').addEventListener('click',e=>{document.getElementById('secret').classList.add('on');rain();e.currentTarget.textContent='Te quiero mucho';});
-
-// Aparición al bajar
-const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-}
-</script>
 </body>
 </html>

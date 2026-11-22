@@ -1,0 +1,51 @@
+/* ==========================================================
+   Base: reset y estilos generales
+   ========================================================== */
+*, *::before, *::after { box-sizing: border-box; min-width: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 var(--font-body);
+  overflow-x: clip;
+}
+
+img { display: block; max-width: 100%; }
+
+/* Secciones */
+.band { padding: clamp(40px, 7vw, 96px) max(5vw, 18px); }
+.band--alt { background: var(--bg2); }
+
+.section-title {
+  font-family: var(--font-hand);
+  font-size: clamp(40px, 8vw, 58px);
+  line-height: 1.05;
+  margin: 0 0 8px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--soft);
+  margin: 0 auto 40px;
+  max-width: 34em;
+}
+
+.footer {
+  text-align: center;
+  color: var(--soft);
+  font-family: var(--font-hand);
+  font-size: 24px;
+  padding: 0 18px 40px;
+}
+
+/* Accesibilidad: sin animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}

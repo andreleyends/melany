@@ -1,0 +1,28 @@
+/* ==========================================================
+   Contador de tiempo juntos
+   ========================================================== */
+.counter {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.counter__unit {
+  padding: 18px 6px;
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--paper-ink);
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(60, 10, 25, .12);
+}
+.counter__value {
+  display: block;
+  font-size: clamp(30px, 8vw, 52px);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--acc);
+  font-variant-numeric: tabular-nums;
+}
+.counter__label { font-size: 14px; color: #7a4352; }
+.counter__since { text-align: center; margin-top: 18px; color: var(--soft); }
